@@ -1,0 +1,441 @@
+-- *****************************************************************
+-- ACTIDATA-MIB:  ACTIDATA LLC
+--                Structure of Management Information 
+-- 
+-- Copyright (c) 201 by Actidata LLC
+-- All rights reserved. 
+--  
+-- *****************************************************************  
+ACTIDATA-MIB DEFINITIONS ::= BEGIN
+	IMPORTS
+ 		MODULE-IDENTITY,
+		OBJECT-IDENTITY,
+	 	enterprises
+ 			FROM SNMPv2-SMI
+	        DisplayString        
+        		FROM SNMPv2-TC;
+actidata MODULE-IDENTITY
+ 	LAST-UPDATED "201111150000Z"
+ 	ORGANIZATION "Actidata LLC"
+ 	CONTACT-INFO "
+  			Tel: +7 
+    			E-mail: info@actidata.ru"
+ 	DESCRIPTION
+		"The Structure of Management Information for the
+ 		 Actidata enterprise."
+ 	REVISION      "201111150000Z"
+ 	DESCRIPTION
+		"Initial version of this MIB module." 	
+::= { enterprises 37758 }	-- assigned by IANA   
+
+consumerProducts OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"consumerProducts is the subtree root for consumer products developed
+		by Actidata" 	
+::= { actidata 1 }  
+
+unitName OBJECT-TYPE
+        SYNTAX     DisplayString (SIZE (64))
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "A name for the module being managed."        
+::= { consumerProducts 1 }
+
+unitVersion OBJECT-TYPE
+        SYNTAX	   INTEGER (0..65535)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "The versoin number of the module being managed."        
+::= { consumerProducts 2 }
+
+ActidataNV1 OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"ActidataNV1 is the subtree root for consumer products developed
+		by Actidata"	      
+::= { consumerProducts 10 }
+
+sensorValueTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorValueTable is root for table, contains current sensor values (multiplyed by 10)"
+::= { ActidataNV1 1 } 
+
+sensorValidTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorCorrectTable is root for table, contains current sensor validity flags"
+::= { ActidataNV1 2 } 
+
+sensorTypeTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorCorrectTable is root for table, contains sensor types"
+::= { ActidataNV1 3 } 
+
+sensorDescriptionTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorDescriptionTable is root for table, contains sensor description as text string"
+::= { ActidataNV1 4 } 
+
+sensorIDTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorIdTable is root for table, contains sensor identifyers as text string"
+::= { ActidataNV1 5 }
+
+sensorAlarmTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorRangeTable is root for table, contains sensor alarms"
+::= { ActidataNV1 6 }
+
+sensorAlarmDescrTable OBJECT-IDENTITY
+ 	STATUS	current
+ 	DESCRIPTION
+ 		"sensorStateTable is root for table, contains sensor alarms as text string"
+::= { ActidataNV1 7 }
+
+
+Sensor1Value OBJECT-TYPE
+       SYNTAX	   INTEGER (-550..1250)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "current sensor 1 values (multiplyed by 10)"        
+::= { sensorValueTable 1 }
+
+Sensor2Value OBJECT-TYPE
+       SYNTAX	   INTEGER (-550..1250)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "current sensor 2 values (multiplyed by 10)"        
+::= { sensorValueTable 2 }
+
+Sensor3Value OBJECT-TYPE
+       SYNTAX	   INTEGER (-550..1250)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "current sensor 3 values (multiplyed by 10)"        
+::= { sensorValueTable 3 }
+
+Sensor4Value OBJECT-TYPE
+       SYNTAX	   INTEGER (-550..1250)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "current sensor 4 values (multiplyed by 10)"        
+::= { sensorValueTable 4 }
+
+Sensor5Value OBJECT-TYPE
+       SYNTAX	   INTEGER (0..1)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "current sensor 5 values (multiplyed by 10)"        
+::= { sensorValueTable 5 }
+
+Sensor6Value OBJECT-TYPE
+       SYNTAX	   INTEGER (0..1)
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+                "current sensor 6 values (multiplyed by 10)"        
+::= { sensorValueTable 6 }
+
+
+Sensor1Type OBJECT-TYPE
+       SYNTAX	   INTEGER {none(0), temperature(1), humidity(2), drycontact(3)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 1 type"        
+::= { sensorTypeTable 1 }
+
+Sensor2Type OBJECT-TYPE
+       SYNTAX	   INTEGER {none(0), temperature(1), humidity(2), drycontact(3)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 2 type"        
+::= { sensorTypeTable 2 }
+
+Sensor3Type OBJECT-TYPE
+       SYNTAX	   INTEGER {none(0), temperature(1), humidity(2), drycontact(3)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 3 type"        
+::= { sensorTypeTable 3 }
+
+Sensor4Type OBJECT-TYPE
+       SYNTAX	   INTEGER {none(0), temperature(1), humidity(2), drycontact(3)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 4 type"        
+::= { sensorTypeTable 4 }
+
+Sensor5Type OBJECT-TYPE
+       SYNTAX	   INTEGER {none(0), temperature(1), humidity(2), drycontact(3)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 5 type"        
+::= { sensorTypeTable 5 }
+
+Sensor6Type OBJECT-TYPE
+       SYNTAX	   INTEGER {none(0), temperature(1), humidity(2), drycontact(3)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 6 type"        
+::= { sensorTypeTable 6 }
+
+Sensor1Valid OBJECT-TYPE
+       SYNTAX	   INTEGER {valid(0), invalid(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 1 validity"        
+::= { sensorValidTable 1 }
+
+Sensor2Valid OBJECT-TYPE
+       SYNTAX	   INTEGER {valid(0), invalid(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 2 validity"        
+::= { sensorValidTable 2 }
+
+Sensor3Valid OBJECT-TYPE
+       SYNTAX	   INTEGER {valid(0), invalid(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 3 validity"        
+::= { sensorValidTable 3 }
+
+Sensor4Valid OBJECT-TYPE
+       SYNTAX	   INTEGER {valid(0), invalid(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 4 validity"        
+::= { sensorValidTable 4 }
+
+Sensor5Valid OBJECT-TYPE
+       SYNTAX	   INTEGER {valid(0), invalid(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 5 validity"        
+::= { sensorValidTable 5 }
+
+Sensor6Valid OBJECT-TYPE
+       SYNTAX	   INTEGER {valid(0), invalid(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 6 validity"        
+::= { sensorValidTable 6 }
+
+Sensor1Description OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 1 description as text string"        
+::= { sensorDescriptionTable 1 }
+
+Sensor2Description OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 2 description as text string"        
+::= { sensorDescriptionTable 2 }
+
+Sensor3Description OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 3 description as text string"        
+::= { sensorDescriptionTable 3 }
+
+Sensor4Description OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 4 description as text string"        
+::= { sensorDescriptionTable 4 }
+
+Sensor5Description OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 5 description as text string"        
+::= { sensorDescriptionTable 5 }
+
+Sensor6Description OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 6 description as text string"        
+::= { sensorDescriptionTable 6 }
+
+Sensor1ID OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 1 ID as text string"        
+::= { sensorIDTable 1 }
+
+Sensor2ID OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 2 ID as text string"        
+::= { sensorIDTable 2 }
+
+Sensor3ID OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 3 ID as text string"        
+::= { sensorIDTable 3 }
+
+Sensor4ID OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 4 ID as text string"        
+::= { sensorIDTable 4 }
+
+Sensor5ID OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 5 ID as text string"        
+::= { sensorIDTable 5 }
+
+Sensor6ID OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 6 ID as text string"        
+::= { sensorIDTable 6 }
+
+Sensor1Alarm OBJECT-TYPE
+       SYNTAX	   INTEGER {norm(0), alarm(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 1 validity"        
+::= { sensorAlarmTable 1 }
+
+Sensor2Alarm OBJECT-TYPE
+       SYNTAX	   INTEGER {norm(0), alarm(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 2 validity"        
+::= { sensorAlarmTable 2 }
+
+Sensor3Alarm OBJECT-TYPE
+       SYNTAX	   INTEGER {norm(0), alarm(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 3 validity"        
+::= { sensorAlarmTable 3 }
+
+Sensor4Alarm OBJECT-TYPE
+       SYNTAX	   INTEGER {norm(0), alarm(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 4 validity"        
+::= { sensorAlarmTable 4 }
+
+Sensor5Alarm OBJECT-TYPE
+       SYNTAX	   INTEGER {norm(0), alarm(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 5 validity"        
+::= { sensorAlarmTable 5 }
+
+Sensor6Alarm OBJECT-TYPE
+       SYNTAX	   INTEGER {norm(0), alarm(1)}
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 6 validity"        
+::= { sensorAlarmTable 6 }
+
+Sensor1AlarmDescr OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 1 alarm desription as text string"        
+::= { sensorAlarmDescrTable 1 }
+
+Sensor2AlarmDescr OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 2 alarm desription as text string"        
+::= { sensorAlarmDescrTable 2 }
+
+Sensor3AlarmDescr OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 3 alarm desription as text string"        
+::= { sensorAlarmDescrTable 3 }
+
+Sensor4AlarmDescr OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 4 alarm desription as text string"        
+::= { sensorAlarmDescrTable 4 }
+
+Sensor5AlarmDescr OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 5 alarm desription as text string"        
+::= { sensorAlarmDescrTable 5 }
+
+Sensor6AlarmDescr OBJECT-TYPE
+       SYNTAX     DisplayString (SIZE (64))
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+                "Sensor 6 alarm desription as text string"        
+::= { sensorAlarmDescrTable 6 }
+
+END 
